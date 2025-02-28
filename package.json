@@ -1,0 +1,8 @@
+{
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "node": "^23.9.0",
+    "pg": "^8.13.3"
+  }
+}

@@ -1,0 +1,698 @@
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('123.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Затемняющий фильтр - исправлен для мобильных устройств */
+body::before {
+    content: "";
+    position: fixed; /* изменено с absolute на fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+}
+
+/* Контейнер приложения - исправлен для мобильных устройств */
+.app-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Заголовок с улучшенным стилем */
+h1 {
+    text-align: center;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff9900, #ff5500);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    box-shadow: 0 4px 15px rgba(255, 153, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* Эффект для заголовка */
+h1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Контейнер для аутентификации */
+#auth-container {
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Переключатель между входом и регистрацией */
+.auth-toggle {
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.3);
+}
+
+.auth-toggle button {
+    flex: 1;
+    background: rgba(30, 30, 30, 0.9);
+    color: white;
+    border: none;
+    padding: 12px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.auth-toggle button.active {
+    background: linear-gradient(135deg, #ff9900, #ff5500);
+    color: white;
+    font-weight: bold;
+}
+
+.auth-toggle button:first-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Форма входа и регистрации */
+#login, #register {
+    text-align: center;
+    background: rgba(30, 30, 30, 0.85);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 153, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+#register {
+    display: none;
+}
+
+#login h2, #register h2 {
+    margin-bottom: 20px;
+    color: #ff9900;
+}
+
+/* Поля ввода */
+#login input, #register input {
+    display: block;
+    width: 100%;
+    margin: 15px auto;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    background: #222;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+#login input::placeholder, #register input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+#login input:focus, #register input:focus {
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.8);
+    background: #333;
+}
+
+/* Кнопки входа и регистрации */
+#login button, #register button {
+    background: linear-gradient(135deg, #ff9900, #ff5500);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#login button:hover, #register button:hover {
+    background: linear-gradient(135deg, #ff7700, #ff9900);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 153, 0, 0.4);
+}
+
+#login button:active, #register button:active {
+    transform: translateY(0);
+}
+
+/* Ошибки */
+.error-text {
+    color: #ff4444;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Карта - исправлена для мобильных устройств */
+#map {
+    display: none;
+    position: fixed; /* изменено с absolute на fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Элементы управления на карте */
+.map-controls {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+#update-location {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+    align-items: center;
+    justify-content: center;
+    order: 2; /* Setting order to ensure this appears after logout */
+}
+
+#update-location img {
+    width: 24px;
+    height: 24px;
+}
+
+#update-location:hover {
+    transform: scale(1.1);
+}
+
+#logout {
+    display: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    order: 1; /* Setting order to ensure this appears first */
+}
+
+#logout:hover {
+    background: #cc0000;
+}
+
+/* Поисковая панель */
+.search-panel {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    width: 80%;
+    max-width: 500px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+#search-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+#search-button {
+    width: 44px;
+    background: white;
+    border: none;
+    border-left: 1px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+#search-button:hover {
+    background: #f5f5f5;
+}
+
+#search-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background: white;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    display: none;
+}
+
+.search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    color: #333;
+}
+
+.search-result-item:hover {
+    background: #f5f5f5;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+/* Панель управления метками */
+.map-panel {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.map-panel h3 {
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.map-panel button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background: #eee;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.map-panel button.active {
+    background: #ff9900;
+    color: white;
+}
+
+#current-mode {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Индикатор загрузки - исправлен для мобильных устройств */
+.loading {
+    display: none;
+    position: fixed; /* изменено с fixed на fixed - но фиксация важна */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #ff9900;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Стили пульсирующего маркера пользователя */
+.pulse-marker {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.pulse-core {
+    background: #ff5500;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 2;
+    box-shadow: 0 0 5px #ff5500;
+}
+
+.pulse-wave {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 85, 0, 0.2);
+    opacity: 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Уведомления - исправлены для мобильных устройств */
+.notification {
+    position: fixed; /* изменено с fixed на fixed - но фиксация важна */
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: #28a745;
+}
+
+.notification.error {
+    background: #dc3545;
+}
+
+.notification.info {
+    background: #17a2b8;
+}
+
+/* Адаптивность - исправлены стили для мобильных устройств */
+@media (max-width: 768px) {
+    /* Исправление для background-image на мобильных */
+    body {
+        background-attachment: scroll; /* Важно для iOS Safari */
+        height: 100%; /* Высота 100% вместо 100vh для некоторых мобильных браузеров */
+        min-height: 100vh; /* Минимальная высота 100vh */
+    }
+    
+    /* Фикс для Safari */
+    html {
+        height: 100%;
+    }
+    
+    .map-controls {
+        flex-direction: column;
+    }
+    
+    .map-panel {
+        width: calc(100% - 30px);
+        bottom: 15px;
+        top: auto;
+        right: 15px;
+    }
+
+    .search-panel {
+        width: 90%;
+    }
+    
+    /* Исправления для адаптивности на мобильных */
+    h1 {
+        font-size: clamp(24px, 4vw, 36px); /* Уменьшен размер для мобильных */
+        padding: 12px 20px;
+        margin-bottom: 15px;
+    }
+    
+    #login, #register {
+        padding: 20px;
+        width: 100%;
+    }
+}
+
+/* Additional styles from inline HTML */
+#debug-log { 
+    height: 100px; 
+    overflow-y: auto; 
+    background: #f0f0f0; 
+    padding: 10px; 
+    font-size: 12px; 
+    border-top: 1px solid #ccc; 
+    display: none; /* Hidden by default */
+}
+
+/* Add these styles to your existing CSS file */
+
+/* Improved mobile adaptation for map controls */
+@media (max-width: 768px) {
+    /* Adjust map controls positioning */
+    .map-controls {
+        flex-direction: column;
+        gap: 10px;
+        top: 70px; /* Move controls down to avoid search bar */
+        left: 10px;
+    }
+    
+    /* Make buttons slightly bigger for better touch targets */
+    #update-location {
+        width: 44px;
+        height: 44px;
+    }
+    
+    #logout {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    /* Adjust search panel to leave space */
+    .search-panel {
+        width: calc(100% - 20px);
+        max-width: none;
+        top: 10px;
+    }
+    
+    /* Move Leaflet zoom controls to prevent overlap */
+    .leaflet-control-zoom {
+        margin-top: 50px !important;
+    }
+    
+    /* Adjust marker panel */
+    .map-panel {
+        width: calc(100% - 20px);
+        bottom: 20px;
+        top: auto;
+        left: 10px;
+        right: 10px;
+        padding: 12px;
+    }
+    
+    /* Style location toggle for mobile */
+    .location-toggle-container {
+        position: absolute;
+        bottom: 80px; /* Position above marker panel */
+        left: 10px;
+        width: calc(100% - 20px);
+        z-index: 1000;
+    }
+    
+    .location-toggle-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        background: white;
+        color: #333;
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    .location-toggle-btn.active {
+        background: #ff9900;
+        color: white;
+    }
+}
+
+/* Additional improvements for very small screens */
+@media (max-width: 480px) {
+    /* Дополнительные исправления для маленьких экранов */
+    body {
+        background-position: center center; /* Обеспечивает центрирование фона */
+    }
+    
+    .map-controls {
+        top: 60px;
+    }
+    
+    #search-input {
+        font-size: 14px;
+        padding: 10px;
+    }
+    
+    .notification {
+        width: calc(100% - 20px);
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        font-size: 14px;
+        text-align: center;
+        transform: translateY(120%); /* Изменяем направление анимации для мобильной версии */
+    }
+    
+    .notification.show {
+        transform: translateY(0);
+    }
+    
+    /* Исправляем проблему с фиксированным фоном */
+    @supports (-webkit-overflow-scrolling: touch) {
+        /* Специальные стили для iOS устройств */
+        body {
+            background-attachment: scroll;
+        }
+        
+        body::before {
+            position: absolute;
+        }
+    }
+}
+
+/* Fix for location toggle on desktop */
+.location-toggle-container {
+    margin-top: 10px;
+}
+
+.location-toggle-btn {
+    background: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.location-toggle-btn.active {
+    background: #ff9900;
+    color: white;
+}
+
+/* Дополнительные стили для исправления отображения на iPhone */
+@media screen and (max-width: 480px) and (orientation: portrait) {
+    /* Исправления для iOS Safari */
+    html, body {
+        height: 100%;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+    }
+    
+    body {
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    
+    .app-container {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+    }
+    .leaflet-popup-content {
+        max-width: 300px; /* Максимальная ширина */
+        word-wrap: break-word; /* Перенос слов */
+        white-space: pre-wrap; /* Сохранение переносов строк */
+    }
+    
+}

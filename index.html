@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МЧС Мониторинг</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <h1>МЧС Мониторинг</h1>
+
+        <div id="auth-container">
+            <!-- Переключатель между входом и регистрацией -->
+            <div class="auth-toggle">
+                <button id="login-tab" class="active">Вход</button>
+                <button id="register-tab">Регистрация</button>
+            </div>
+
+            <!-- Форма входа -->
+            <div id="login">
+                <h2>Вход в систему</h2>
+                <input type="text" id="username" placeholder="Логин" />
+                <input type="password" id="password" placeholder="Пароль" />
+                <button id="login-button">Войти</button>
+                <p id="login-error" class="error-text"></p>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div id="register">
+                <h2>Регистрация нового пользователя</h2>
+                <input type="text" id="new-username" placeholder="Придумайте логин" />
+                <input type="password" id="new-password" placeholder="Придумайте пароль" />
+                <input type="password" id="confirm-password" placeholder="Подтвердите пароль" />
+                <input type="text" id="special-key" placeholder="Специальный ключ" />
+                <button id="register-button">Зарегистрироваться</button>
+                <p id="register-error" class="error-text"></p>
+            </div>
+        </div>
+
+        <div id="map">
+            <!-- Элементы управления картой -->
+            <div class="map-controls">
+                <button id="update-location" title="Обновить местоположение">
+                    <img src="icon.png" alt="Обновить" />
+                </button>
+                <button id="logout" title="Выйти из системы">Выход</button>
+            </div>
+
+            <!-- Поисковая панель -->
+            <div id="search-panel" class="search-panel">
+                <input type="text" id="search-input" placeholder="Введите адрес (улица, дом, город)" />
+                <button id="search-button" title="Найти">
+                    <img src="search-icon.png" alt="Поиск" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23333%22 stroke-width=%222%22><circle cx=%2211%22 cy=%2211%22 r=%228%22/><line x1=%2221%22 y1=%2221%22 x2=%2216.65%22 y2=%2216.65%22/></svg>'" />
+                </button>
+            </div>
+            
+            <!-- Панель управления метками (для админа) -->
+            <div id="marker-panel" class="map-panel">
+                <h3>Управление метками</h3>
+                <button id="add-marker-mode">Режим добавления</button>
+                <button id="delete-marker-mode">Режим удаления</button>
+                <button id="view-marker-mode" class="active">Режим просмотра</button>
+                <div id="current-mode">Текущий режим: Просмотр</div>
+            </div>
+        </div>
+        
+        <!-- Индикатор загрузки -->
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Загрузка...</p>
+        </div>
+        
+        <!-- Журнал отладки -->
+        <div id="debug-log"></div>
+    </div>
+
+    <!-- Загрузка скриптов в правильном порядке -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
